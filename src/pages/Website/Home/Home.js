@@ -2,8 +2,8 @@ import React from 'react';
 import { Container, Row, Col, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css/animate.min.css';
-import playstore from "../../assets/images/play-store-badge-.webp";
-import HomeImage from "../../assets/images/Sport family-amico.svg";
+import playstore from "../../../assets/images/play-store-badge-.webp";
+import HomeImage from "../../../assets/images/Sport family-amico.svg";
 const Home = () => {
   return (
     <div className=' bg-custom hero-header '>

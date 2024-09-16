@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from "../Header/Header";
+import Home from "../Home/Home";
 import Choose from "../Choose/Choose";
 import {GetStarted }from "../GetStarted/GetStarted"; 
 import { SportsLike } from "../SportLike/SportLike";
