@@ -43,16 +43,16 @@ export default function Router() {
           <DashboardLayout />
         </AuthGuard>
       ),
-    //   children: [
-    //     {
-    //       path: "train",
-    //       element: (
-    //         <AuthGuard>
-    //           <Train />
-    //         </AuthGuard>
-    //       ),
-    //     },
-    //          ],
+      children: [
+        {
+          path: "notification",
+          element: (
+            <AuthGuard>
+              <Notification />
+            </AuthGuard>
+          ),
+        },
+             ],
     },
     {
       path: "*",
@@ -72,6 +72,10 @@ const Play2Earn = Loadable(
 const Login = Loadable(lazy(() => import("../pages/Admin/LoginForms/Login")));
 const DashboardLayout = Loadable(
   lazy(() => import("../pages/Admin/Dashboard/DashboardLayout"))
+);
+
+const Notification = Loadable(
+  lazy(() => import("../pages/Admin/Notification/Notification"))
 );
 
 // const NotFound = Loadable(lazy(() => import("../pages/404/Page404")));
