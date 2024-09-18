@@ -32,7 +32,7 @@ const MainNav = () => {
           position: "sticky",
           top: "0",
           zIndex: 1000,
-          backgroundColor: "#0077B2",
+          backgroundColor: "#083C7A",
         }}
       >
         <Row className="d-flex flex-row flex-wrap-wrap justify-content-around align-items-center p-2">
@@ -125,7 +125,7 @@ const MainNav = () => {
       {/* Conditionally render Offcanvas for large screens */}
       <Row className="d-none d-lg-flex d-xl-flex d-xxl-flex">
         <Offcanvas scroll={false} show={show} onHide={handleClose}>
-          <Offcanvas.Header style={{ backgroundColor: "#0077B2" }} closeButton>
+          <Offcanvas.Header style={{ backgroundColor: "#083C7A" }} closeButton>
             <Offcanvas.Title
               className="custom-title"
               style={{

@@ -8,7 +8,7 @@ import TextInput from "../../../components/TextInput";
 import { useLoginUserMutation } from "../../../redux/api/AuthApi";
 import { toast } from "react-toastify";
 import BasicButton from "../../../components/BasicButton";
-import login from "../../../assets/images/loginlogo2.webp";
+import login from "../../../assets/images/loginimg.svg";
 
 const Login = () => {
   const [passwordIcon, setPasswordIcon] = useState(false);
@@ -65,7 +65,7 @@ const Login = () => {
             src={login}
             alt="adminLoginImage"
             title="adminLoginImage"
-            style={{ height: "600px", width: "900px" }}
+            style={{ height: "500px", width: "800px" }}
           />
         </Col>
 

@@ -44,10 +44,10 @@ function Header() {
         >
           <Nav className="ml-auto">
             {/* <Nav.Link href="/pnr-status">Home</Nav.Link> */}
-            <Nav.Link href="/about-us">About Us</Nav.Link>
+            {/* <Nav.Link href="/about-us">About Us</Nav.Link>
             <Nav.Link href="/faq">FAQ</Nav.Link>
             <Nav.Link href="/features">Features</Nav.Link>
-            <Nav.Link href="/contact">Contact</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link> */}
 
 
             {/* <Nav.Link href="/live-train">Live Train</Nav.Link>

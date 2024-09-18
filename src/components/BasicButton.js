@@ -14,8 +14,8 @@ const BasicButton = (props) => {
     type
   } = props;
   const buttonStyle = {
-    backgroundColor:"#0077B2",
-    borderColor: "#0077B2",
+    backgroundColor:"#083C7A",
+    borderColor: "#083C7A",
     color:"white",
   };
   return (
@@ -36,7 +36,7 @@ const BasicButton = (props) => {
         <>
           <Spinner
             size={`${!loaderSize ? "sm" : loaderSize}`}
-            variant={`${!loaderVariant ? "#0077B2" : loaderVariant}`}
+            variant={`${!loaderVariant ? "#083C7A" : loaderVariant}`}
           />
         </>
       )}
