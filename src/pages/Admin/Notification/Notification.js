@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Modal, Row, Spinner } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
 import BasicTable from ".././../../components/BasicTable";
 import Header from ".././../../components/Header";
 import Loader from ".././../../pages/Admin/Loader/Loader";
-import { useGetNotificationQuery, useDeleteNotificationMutation, useAddNotificationMutation } from "../../../redux/api/NotificationApi";
+import { useGetNotificationQuery, useDeleteNotificationMutation, useAddNotificationMutation, useEditNotificationMutation } from "../../../redux/api/NotificationApi";
 import { toast } from "react-toastify";
 import DeleteModel from ".././../../components/DeleteModel";
 import { BsSearch, BsX } from "react-icons/bs";
 import { format } from "date-fns";
+import DragAndDropImageUpload from "../../../components/DragAndDropImageUpload";
+import InputImage from "../../../components/ImageInputs";
+import { FaEdit } from "react-icons/fa";
 
 const Notification = () => {
  
@@ -19,10 +22,19 @@ const Notification = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [image, setImage] = useState("");
+  const [editTitle, setEditTitle] = useState("");
+  const [editBody, setEditBody] = useState("");
+  const [editImage, setEditImage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [editShow, setEditShow] = useState(false);
 
-  const { data: NotificationData, isLoading } = useGetNotificationQuery();
+
+  const { data: NotificationData, isLoading ,refetch} = useGetNotificationQuery();
   const [deleteNotificationApi] = useDeleteNotificationMutation();
   const [addNotificationApi] = useAddNotificationMutation();
+  const [editNotificationData] = useEditNotificationMutation();
+
 
   useEffect(() => {
     if (NotificationData && NotificationData.data) {
@@ -62,6 +74,7 @@ const Notification = () => {
   };
 
   const handleAddNotification = async () => {
+    setLoading(true);
     try {
       const response = await addNotificationApi ({
         title: title,
@@ -69,15 +82,12 @@ const Notification = () => {
         image:image,
          
       });
-      if (response?.data) {
-       
+      if (response?.data) {   
         toast.success(response?.data?.message, { autoClose: 1000 });
         setTitle("");
         setBody("");
         setImage("");
-        setShowAddModal(false)
-        console.log(response.error.data);
-        
+        setShowAddModal(false)     
       } else {
         toast.error(response?.error?.data.error, { autoClose: 1000 });
         console.log("else part");
@@ -85,9 +95,75 @@ const Notification = () => {
       }
     } catch (error) {
       console.error(error);
-   
+    }
+      finally {
+        setLoading(false);
     }
   };
+
+  const handleFileAddChange = (file) => {
+    setImage(file);
+  };
+
+  const handleFileChange = (file) => {
+    setEditImage(file);
+  };
+
+  const handleEditShow = (id) => {
+    const Notification = data.find((d) => d._id === id);
+
+    if (Notification) {
+      setEditId(id);
+      setEditTitle(Notification.title);
+      setEditBody(Notification.message);
+      setEditImage(Notification.imageUrl);
+      setEditShow(true);
+    }
+  };
+
+  const handleEditClose = () => {
+    setEditShow(false);
+    setEditId(null);
+    setEditTitle("");
+      setEditBody("");
+      setEditImage(null);
+  ;
+  };
+
+  
+  const handleEditData = async () => {
+    if (!editTitle || !editBody) {
+      toast.error('Please fill all the fields', { autoClose: 1000 });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('title', editTitle);
+      formData.append('message', editBody);
+      formData.append('imageUrl', editImage);
+
+      const response = await editNotificationData({
+        id: editId,
+        data: formData,
+      });
+
+      if (response.data) {
+        toast.success(response.data.message, { autoClose: 1000 });
+        setEditShow(false);
+        refetch();
+      } else {
+        toast.error(response.error.data.error, { autoClose: 1000 });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const COLUMNS = [
     {
@@ -143,6 +219,9 @@ const Notification = () => {
         const rowIdx = props.row.original._id;
         return (
           <div className="d-flex align-items-center justify-content-center flex-row">
+            <Button variant="warning" onClick={() => handleEditShow(rowIdx)}>
+              <FaEdit />
+            </Button>
             <Button variant="danger" className="m-1" onClick={() => deleteHandleShow(rowIdx)}>
               <MdDelete />
             </Button>
@@ -208,24 +287,124 @@ const Notification = () => {
                     onChange={(e) => setBody(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formImage">
-                  <Form.Label>Image</Form.Label>
-                  <Form.Control
-                    type="file"
-                    onChange={(e) => setImage(e.target.files[0])}
-                  />
-                </Form.Group>
+                <DragAndDropImageUpload
+              labelText="Upload Image"
+              accepts={{
+                'image/*': ['.png', '.jpeg', '.jpg', '.svg', '.webp'],
+              }}
+              handleFileChange={(file) => {
+                handleFileAddChange(file);
+              }}
+            />
+            <div>
+              <small className="text-muted">
+                Accepted file types: .jpg , .jpeg, .png, .svg, .webp{' '}
+              </small>
+            </div>
+            <InputImage image={image} valueImage={image} />
               </Form>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={() => setShowAddModal(false)}>
                 Close
               </Button>
-              <Button variant="primary" onClick={handleAddNotification}  style={{ backgroundColor: "#083C7A", border: "none" }}>
-                Send
+              <Button variant="primary" 
+              onClick={handleAddNotification}  
+              style={{ backgroundColor: "#083C7A", border: "none" }}
+              disabled={loading}
+          >
+            {loading ? (
+              <>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  className="me-2"
+                />
+                Adding...
+              </>
+            ) : (
+              'Add'
+            )}
               </Button>
             </Modal.Footer>
           </Modal>
+
+
+          <Modal show={editShow} onHide={handleEditClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Notification</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="deviceNameInput" className="mb-3">
+              <Form.Label>
+                  Title <span className="text-danger">*</span>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                placeholder="Enter the title name here"
+              />
+            </Form.Group>
+            <Form.Group controlId="deviceNameInput" className="mb-3">
+              <Form.Label>
+                  Body <span className="text-danger">*</span>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                value={editBody}
+                onChange={(e) => setEditBody(e.target.value)}
+                placeholder="Enter the title name here"
+              />
+            </Form.Group>
+            <DragAndDropImageUpload
+              labelText="Upload Image"
+              accepts={{
+                'image/*': ['.png', '.jpeg', '.jpg', '.svg', '.webp'],
+              }}
+              handleFileChange={(file) => {
+                handleFileChange(file);
+              }}
+            />
+            <div>
+              <small className="text-muted">
+                Accepted file types: .jpg , .jpeg, .png, .svg, .webp{' '}
+              </small>
+            </div>
+            <InputImage image={editImage} valueImage={editImage} />
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleEditClose}>
+            Cancel
+          </Button>
+          <Button
+            style={{ backgroundColor: "#083C7A", border: 'none' }}
+            onClick={handleEditData}
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  className="me-2"
+                />
+                Updating...
+              </>
+            ) : (
+              'Update'
+            )}
+          </Button>
+        </Modal.Footer>
+      </Modal>
         </>
       ) : (
         <Loader />

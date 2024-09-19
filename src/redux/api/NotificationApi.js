@@ -36,6 +36,19 @@ export const NotificationApi = createApi({
       },
       invalidatesTags: ["NOTIFICATION"],
     }),
+
+
+    editNotification: build.mutation({
+      query: ({ id,data }) => {
+         return {
+          url: `/notification/${id}`,
+          method: "PATCH",
+          body: data,
+        };
+      },
+      invalidatesTags: ["NOTIFICATION"],
+    }),
+    
     
     deleteNotification: build.mutation({
       query: (id) => ({
@@ -51,4 +64,4 @@ export const NotificationApi = createApi({
 });
 
 export const { useGetNotificationQuery,useDeleteNotificationMutation,
-    useAddNotificationMutation} = NotificationApi;
+    useAddNotificationMutation,useEditNotificationMutation} = NotificationApi;
