@@ -1,6 +1,7 @@
 
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { FaBell } from "react-icons/fa";
+import { IoSettingsSharp } from "react-icons/io5";
 
 
 
@@ -21,4 +22,15 @@ export const sidebarItems = [
     "order_index": 2,
     "url": "/admin/notification"
   },
+
+  {
+    "id": 3,
+    "label": "Settings",
+    "parent_id": null,
+    "icon":<IoSettingsSharp   size={20} />,
+    "order_index": 3,
+    "url": "/admin/settings"
+  },
+
+
 ];

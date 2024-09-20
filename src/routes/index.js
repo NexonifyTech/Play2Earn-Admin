@@ -52,6 +52,14 @@ export default function Router() {
             </AuthGuard>
           ),
         },
+        {
+          path: "settings",
+          element: (
+            <AuthGuard>
+              <Settings />
+            </AuthGuard>
+          ),
+        },
              ],
     },
     {
@@ -78,4 +86,7 @@ const Notification = Loadable(
   lazy(() => import("../pages/Admin/Notification/Notification"))
 );
 
+const Settings = Loadable(
+  lazy(() => import("../pages/Admin/Settings/Settings"))
+);
 // const NotFound = Loadable(lazy(() => import("../pages/404/Page404")));
