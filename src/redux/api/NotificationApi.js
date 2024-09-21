@@ -19,16 +19,11 @@ export const NotificationApi = createApi({
   
 
     addNotification: build.mutation({
-      query: ({ title, message, image }) => {
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('message', message);
-        formData.append('image', image);
-    
+      query: ({data}) => {
         return {
           url: `/notification`,
           method: "POST",
-          body: formData,
+          body: data,
           headers: {
            
           },
@@ -36,7 +31,7 @@ export const NotificationApi = createApi({
       },
       invalidatesTags: ["NOTIFICATION"],
     }),
-
+        
 
     editNotification: build.mutation({
       query: ({ id,data }) => {

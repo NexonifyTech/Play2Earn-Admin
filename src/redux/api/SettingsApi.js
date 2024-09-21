@@ -18,10 +18,10 @@ export const SettingApi = createApi({
     }),
   
 
-    editSetting: build.mutation({
+    editBanner: build.mutation({
       query: ({ id,data }) => {
          return {
-          url: `/Setting/${id}`,
+          url: `/home/banners/${id}`,
           method: "PATCH",
           body: data,
         };
@@ -29,6 +29,49 @@ export const SettingApi = createApi({
       invalidatesTags: ["SETTING"],
     }),
     
+
+    editGame: build.mutation({
+      query: ({ id,data }) => {
+         return {
+          url: `/home/gameCategories/${id}`,
+          method: "PATCH",
+          body: data,
+        };
+      },
+      invalidatesTags: ["SETTING"],
+    }),
+    
+    addBanner: build.mutation({
+      query: ({data}) => {
+        return {
+          url: `/home/banners`,
+          method: "POST",
+          body: data,
+          headers: {
+           
+          },
+        };
+      },
+      invalidatesTags: ["SETTING"],
+    }),
+        
+      
+    addGame: build.mutation({
+      query: ({data}) => {
+        return {
+          url: `/home/gameCategories`,
+          method: "POST",
+          body: data,
+          headers: {
+           
+          },
+        };
+      },
+      invalidatesTags: ["SETTING"],
+    }),
+        
+    
+
     
     deleteBanner: build.mutation({
       query: (id) => ({
@@ -40,9 +83,20 @@ export const SettingApi = createApi({
       }),
       invalidatesTags: ["SETTING"],
     }),
-    deleteSetting: build.mutation({
+    deleteBanner: build.mutation({
         query: (id) => ({
-          url: `/Setting/${id}`,
+          url: `/home/banners/${id}`,
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+          },
+        }),
+        invalidatesTags: ["SETTING"],
+      }),
+
+      deleteGame: build.mutation({
+        query: (id) => ({
+          url: `/home/gameCategories/${id}`,
           method: "DELETE",
           headers: {
             "Content-Type": "application/json; charset=UTF-8",
@@ -54,5 +108,5 @@ export const SettingApi = createApi({
 
 });
 
-export const { useGetSettingQuery,useDeleteBannerMutation,
-    useEditSettingMutation} = SettingApi;
+export const { useGetSettingQuery,useDeleteBannerMutation,useDeleteGameMutation,
+    useEditBannerMutation,useEditGameMutation,useAddBannerMutation,useAddGameMutation} = SettingApi;

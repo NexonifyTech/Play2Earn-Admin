@@ -76,12 +76,14 @@ const Notification = () => {
   const handleAddNotification = async () => {
     setLoading(true);
     try {
-      const response = await addNotificationApi ({
-        title: title,
-        message: body,
-        image:image,
-         
-      });
+
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('title', title);
+      formData.append('message', body);
+
+
+      const response = await addNotificationApi({ data: formData});
       if (response?.data) {   
         toast.success(response?.data?.message, { autoClose: 1000 });
         setTitle("");
@@ -143,7 +145,7 @@ const Notification = () => {
       const formData = new FormData();
       formData.append('title', editTitle);
       formData.append('message', editBody);
-      formData.append('imageUrl', editImage);
+      formData.append('image', editImage);
 
       const response = await editNotificationData({
         id: editId,
