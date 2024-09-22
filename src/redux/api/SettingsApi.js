@@ -22,7 +22,7 @@ export const SettingApi = createApi({
       query: ({ id,data }) => {
          return {
           url: `/home/banners/${id}`,
-          method: "PATCH",
+          method: "PUT",
           body: data,
         };
       },
@@ -34,7 +34,7 @@ export const SettingApi = createApi({
       query: ({ id,data }) => {
          return {
           url: `/home/gameCategories/${id}`,
-          method: "PATCH",
+          method: "PUT",
           body: data,
         };
       },
@@ -72,17 +72,7 @@ export const SettingApi = createApi({
         
     
 
-    
-    deleteBanner: build.mutation({
-      query: (id) => ({
-        url: `/home/banners/${id}`,
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
-      }),
-      invalidatesTags: ["SETTING"],
-    }),
+  
     deleteBanner: build.mutation({
         query: (id) => ({
           url: `/home/banners/${id}`,

@@ -7,7 +7,6 @@ import Loader from ".././../../pages/Admin/Loader/Loader";
 import {  useAddBannerMutation, useAddGameMutation, useDeleteBannerMutation, useDeleteGameMutation, useEditBannerMutation, useEditGameMutation, useGetSettingQuery } from "../../../redux/api/SettingsApi";
 import { toast } from "react-toastify";
 import DeleteModel from ".././../../components/DeleteModel";
-import { BsSearch, BsX } from "react-icons/bs";
 import { format } from "date-fns";
 import DragAndDropImageUpload from "../../../components/DragAndDropImageUpload";
 import InputImage from "../../../components/ImageInputs";
@@ -163,6 +162,8 @@ const Settings = () => {
     
       } else {
         toast.error(response?.error?.data.error, { autoClose: 1000 });
+        setBannerImage('');
+        setBannerTitle('');
       }
     } catch (error) {
       console.error(error);
@@ -190,6 +191,8 @@ const Settings = () => {
     
       } else {
         toast.error(response?.error?.data.error, { autoClose: 1000 });
+        setGameName('');
+        setGameImage('');
       }
     } catch (error) {
       console.error(error);

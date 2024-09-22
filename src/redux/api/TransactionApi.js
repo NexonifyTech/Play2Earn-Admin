@@ -1,27 +1,27 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import CustomFetchBase from "./CustomFetchBase";
 
-export const NotificationApi = createApi({
-  reducerPath: "NotificationApi",
+export const TransactionApi = createApi({
+  reducerPath: "TransactionApi",
   baseQuery: CustomFetchBase,
-  tagTypes: ["NOTIFICATION"],
+  tagTypes: ["TRANSACTION"],
   endpoints: (build) => ({
-    getNotification: build.query({
+    getTransaction: build.query({
       query: () => ({
-        url: `/notification/`,
+        url: `/transaction/`,
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
         },
       }),
-      providesTags: ["NOTIFICATION"],
+      providesTags: ["TRANSACTION"],
     }),
   
 
-    addNotification: build.mutation({
+    addTransaction: build.mutation({
       query: ({data}) => {
         return {
-          url: `/notification`,
+          url: `/transaction`,
           method: "POST",
           body: data,
           headers: {
@@ -29,34 +29,34 @@ export const NotificationApi = createApi({
           },
         };
       },
-      invalidatesTags: ["NOTIFICATION"],
+      invalidatesTags: ["TRANSACTION"],
     }),
         
 
-    editNotification: build.mutation({
+    editTransaction: build.mutation({
       query: ({ id,data }) => {
          return {
-          url: `/notification/${id}`,
+          url: `/transaction/${id}`,
           method: "PUT",
           body: data,
         };
       },
-      invalidatesTags: ["NOTIFICATION"],
+      invalidatesTags: ["TRANSACTION"],
     }),
     
     
-    deleteNotification: build.mutation({
+    deleteTransaction: build.mutation({
       query: (id) => ({
-        url: `/notification/${id}`,
+        url: `/Transaction/${id}`,
         method: "DELETE",
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
         },
       }),
-      invalidatesTags: ["NOTIFICATION"],
+      invalidatesTags: ["TRANSACTION"],
     }),
   }),
 });
 
-export const { useGetNotificationQuery,useDeleteNotificationMutation,
-    useAddNotificationMutation,useEditNotificationMutation} = NotificationApi;
+export const { useGetTransactionQuery,useDeleteTransactionMutation,
+    useAddTransactionMutation,useEditTransactionMutation} = TransactionApi;

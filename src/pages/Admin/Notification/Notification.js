@@ -7,7 +7,6 @@ import Loader from ".././../../pages/Admin/Loader/Loader";
 import { useGetNotificationQuery, useDeleteNotificationMutation, useAddNotificationMutation, useEditNotificationMutation } from "../../../redux/api/NotificationApi";
 import { toast } from "react-toastify";
 import DeleteModel from ".././../../components/DeleteModel";
-import { BsSearch, BsX } from "react-icons/bs";
 import { format } from "date-fns";
 import DragAndDropImageUpload from "../../../components/DragAndDropImageUpload";
 import InputImage from "../../../components/ImageInputs";
@@ -42,7 +41,6 @@ const Notification = () => {
     }
   }, [NotificationData]);
 
-  console.log(NotificationData);
 
   const handleNavigateAddForm = () => setShowAddModal(true);
 

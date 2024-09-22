@@ -60,6 +60,22 @@ export default function Router() {
             </AuthGuard>
           ),
         },
+        {
+          path: "transaction",
+          element: (
+            <AuthGuard>
+              <Transaction />
+            </AuthGuard>
+          ),
+        },
+        {
+          path: "user-list",
+          element: (
+            <AuthGuard>
+              <UserList />
+            </AuthGuard>
+          ),
+        },
              ],
     },
     {
@@ -88,5 +104,13 @@ const Notification = Loadable(
 
 const Settings = Loadable(
   lazy(() => import("../pages/Admin/Settings/Settings"))
+);
+
+const Transaction = Loadable(
+  lazy(() => import("../pages/Admin/Transaction/Transaction"))
+);
+
+const UserList = Loadable(
+  lazy(() => import("../pages/Admin/UserList/UserList"))
 );
 // const NotFound = Loadable(lazy(() => import("../pages/404/Page404")));
