@@ -16,14 +16,21 @@ const BasicTable = (props) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    setGlobalFilter,
     prepareRow,
     page,
-    state,
+    pageOptions,
+    state: { pageIndex, globalFilter },
+    setGlobalFilter,
+    previousPage,
+    nextPage,
+    canPreviousPage,
+    canNextPage,
+    gotoPage,
   } = useTable(
     {
       columns,
       data,
+      initialState: { pageIndex: 0 },
     },
     useGlobalFilter,
     useSortBy,
@@ -38,7 +45,7 @@ const BasicTable = (props) => {
             <Col className="m-4" xxl={3} xl={3} lg={3} sm={3} md={3}>
               <Form.Control
                 placeholder="Search here..."
-                value={state.globalFilter || ""}
+                value={globalFilter || ""}
                 onChange={(e) => setGlobalFilter(e.target.value.trim())}
                 className=""
               />
@@ -57,7 +64,7 @@ const BasicTable = (props) => {
                   backgroundColor: "#083C7A",
                   outline: "none",
                   border: "none",
-                color:"white"
+                  color: "white",
                 }}
               >
                 Search
@@ -103,9 +110,13 @@ const BasicTable = (props) => {
                   );
                 })
               ) : (
-                
                 <tr>
-                  <td colSpan={columns.length} className="text-center text-dark">No Data Found</td>
+                  <td
+                    colSpan={columns.length}
+                    className="text-center text-dark"
+                  >
+                    No Data Found
+                  </td>
                 </tr>
               )}
             </tbody>
@@ -118,34 +129,40 @@ const BasicTable = (props) => {
             <span className="m-1 d-flex justify-content-start align-items-center">
               page
               <strong className="m-2">
-               {props.currentPage} of {props.totalPages}
+                {pageIndex + 1} of {pageOptions.length}
               </strong>{" "}
             </span>
             <Col className="d-none d-sm-none d-md-none d-xxl-flex d-xl-flex d-lg-flex justify-content-end align-items-center">
               <Button
-                onClick={() => props.setCurrentPage(props.currentPage - 1)}
-                disabled={props.currentPage === 1}
+                onClick={previousPage}
+                disabled={!canPreviousPage}
                 className="m-2"
-                style={{backgroundColor:"#083C7A"}}
+                style={{ backgroundColor: "#083C7A" }}
               >
                 previous
               </Button>
-              <Button onClick={() => props.setCurrentPage(props.currentPage + 1)}
-                style={{backgroundColor:"#083C7A"}}
-          disabled={props.currentPage === props.totalPages}>
+              <Button
+                onClick={nextPage}
+                style={{ backgroundColor: "#083C7A" }}
+                disabled={!canNextPage}
+              >
                 Next
               </Button>
             </Col>
             <Col className="d-flex d-sm-flex d-md-flex d-xxl-none d-xl-none d-lg-none justify-content-end align-items-center">
               <Button
-                onClick={() => props.setCurrentPage(props.currentPage - 1)}
-                disabled={props.currentPage === 1}
+                onClick={previousPage}
+                disabled={!canPreviousPage}
+                style={{ backgroundColor: "#083C7A" }}
                 className="m-2"
               >
                 <BiLeftArrow size={16} />
               </Button>
-              <Button onClick={() =>{props.setCurrentPage(props.currentPage + 1)}}
-          disabled={props.currentPage === props.totalPages}>
+              <Button
+                onClick={nextPage}
+                style={{ backgroundColor: "#083C7A" }}
+                disabled={!canNextPage}
+              >
                 <BiRightArrow size={16} />
               </Button>
             </Col>
