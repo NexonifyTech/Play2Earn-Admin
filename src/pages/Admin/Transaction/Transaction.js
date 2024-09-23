@@ -43,7 +43,6 @@ const Transaction = () => {
     }
   }, [TransactionData]);
 
-
   const handleNavigateAddForm = () => setShowAddModal(true);
 
   const handleAddTransaction = async () => {
@@ -70,12 +69,14 @@ const Transaction = () => {
     }
   };
 
-  const handleEditShow = (id) => {
-    const Transaction = data.find((d) => d._id === id);
+  const handleEditShow = (rows) => {
+    console.log(rows.transactionStatus);
+
+    const Transaction = data.find((d) => d._id === rows._id);
 
     if (Transaction) {
-      setEditId(id);
-      setStatus(Transaction.title);
+      setEditId(rows._id);
+      setStatus(rows.transactionStatus);
       setEditShow(true);
     }
   };
@@ -125,28 +126,21 @@ const Transaction = () => {
     },
     {
       Header: "Account Holder Name",
-      accessor: "accountHolderName",
+      accessor: "bankDetails.accountHolderName",
     },
     {
-      Header: "BankName",
-      accessor: "bankName",
+      Header: "Bank Name",
+      accessor: "bankDetails.bankName",
       width: "auto",
       minWidth: 100,
     },
     {
-      Header: "Ifsc Code",
-      accessor: "ifscCode",
-      width: "auto",
-      minWidth: 100,
-    },
-
-    {
-      Header: "Upi Id",
-      accessor: "upiId",
+      Header: "Account Number",
+      accessor: "bankDetails.accountNumber",
     },
     {
-      Header: "Account Type",
-      accessor: "accountType",
+      Header: "IFSC Code",
+      accessor: "bankDetails.ifscCode",
       width: "auto",
       minWidth: 100,
     },
@@ -194,7 +188,7 @@ const Transaction = () => {
       accessor: "action",
       fixed: "right",
       Cell: (props) => {
-        const rowIdx = props.row.original._id;
+        const rowIdx = props.row.original;
         return (
           <div className="d-flex align-items-center justify-content-center flex-row">
             <Button variant="warning" onClick={() => handleEditShow(rowIdx)}>
@@ -302,10 +296,12 @@ const Transaction = () => {
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
                   >
-                    <option value="">Select Status</option>
+                    <option value="" disabled>
+                      Select Status
+                    </option>
                     <option value="Pending">Pending</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Cancelled">Cancelled</option>
+                    <option value="Successfully">Successfully</option>
+                    <option value="Failed">Failed</option>
                   </Form.Select>
                 </Form.Group>
               </Form>
