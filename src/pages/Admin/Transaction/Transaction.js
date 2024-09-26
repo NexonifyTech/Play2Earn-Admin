@@ -158,6 +158,12 @@ const Transaction = () => {
       minWidth: 100,
     },
     {
+      Header: "Amount",
+      accessor: "amount",
+      width: "auto",
+      minWidth: 100,
+    },
+    {
       Header: "Transaction Status",
       accessor: "transactionStatus",
       width: "auto",
