@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MainLogo from "../../../assets/images/logo5.webp";
+import MainLogo from "../../../assets/images/mainlogo.jpeg";
 import "./MainNav.css";
 import { Col, Container, Dropdown, Offcanvas, Row } from "react-bootstrap";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -48,7 +48,7 @@ const MainNav = () => {
             className="d-lg-flex d-none d-sm-none flex-row flex-wrap-wrap justify-content-between align-items-center"
             style={{ marginRight: "100px" }}
           >
-            <img src={MainLogo} width={30} className="pointer" alt="MainLogoImage1" title="MainLogoImage1"></img>
+            <img src={MainLogo} width={40} className="pointer" alt="MainLogoImage1" title="MainLogoImage1"></img>
           </Col>
         </Row>
 
