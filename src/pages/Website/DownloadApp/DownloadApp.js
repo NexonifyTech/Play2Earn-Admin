@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Downloadimage from "../../../assets/images/mobileimages.webp";
+import Downloadimage from "../../../assets/images/earnmoneys.png";
 import Ratings from "../../../assets/images/Ratings.webp";
 import playstore from "../../../assets/images/play-store-badge-.webp";
 
@@ -43,17 +43,14 @@ const DownloadAppSection = () => {
               <h1 className="mt-2">
                 <br />
                 <br />
-                Download Our App
+                Download App
               </h1>
             </div>
-            <p className="mb-4"style={{ fontSize: '20px' }}>
+            {/* <p className="mb-4"style={{ fontSize: '20px' }}>
               Wherever you're going, we're right there with you
-            </p>
+            </p> */}
             <p style={{ fontSize: '20px' }}>
-              "Download the Bet and Play app today. Get access to trusted,
-              authentic, and real-time information about sports events, game
-              schedules, betting odds, player stats, and more at your
-              fingertips."
+            "Download the Play2Earn app today. Play games, earn money, and get real-time updates on sports events, game schedules, and more — all at your fingertips!"
             </p>
             <img
               src={playstore}

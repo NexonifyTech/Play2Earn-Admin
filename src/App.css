@@ -196,10 +196,11 @@ h6,
 /*** Hero Header ***/
 
 .hero-header {
-  background: url(../src/assets/images/bg-dot.png), url(../src/assets/images/bg-dot.png), url(../src/assets/images/bg-round.png), url(../src/assets/images/bg-tree.png), url(../src/assets/images/bg-bottom-hero.png);
+  /* background: url(../src/assets/images/bg-dot.png), url(../src/assets/images/bg-dot.png), url(../src/assets/images/bg-round.png), url(../src/assets/images/bg-tree.png), url(../src/assets/images/bg-bottom-hero.png);
   background-position: 10px 10px, bottom 190px right 10px, left 55% top -1px, left 45% bottom -1px, center bottom -1px;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   margin-top:55px;
+  margin-bottom:55px;
 }
 
 

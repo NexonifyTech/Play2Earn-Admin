@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Nav} from "react-bootstrap";
-import Logo3 from "../../../assets/images/header.webp";
+import Logo3 from "../../../assets/images/mainlogo.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 function Header() {
@@ -24,19 +24,20 @@ function Header() {
         <Navbar.Brand href="/" className="">
           <img
             src={Logo3}
-            alt="TrainsOnWheels"
+            alt="play2earn"
             className="img-fluid header-logo"
-            style={{ maxWidth: "150px", height: "auto" }}
+            style={{width: "30px", height: "30px" }}
           />
+          <span style={{marginLeft:"15px",fontFamily:"sans-serif",fontWeight:"bold"}}>Play2Earn</span>
         </Navbar.Brand>
         {/* End Logo */}
-        <Navbar.Toggle
+        {/* <Navbar.Toggle
           aria-controls="basic-navbar-nav responsive-navbar-nav"
           onClick={handleToggleCollapse}
           style={{ marginRight: "15px", color: "white" }}
         >
           <FontAwesomeIcon icon={toggleIcon} style={{ color: "black" }} />
-        </Navbar.Toggle>
+        </Navbar.Toggle> */}
         {/* Begin Menu */}
         <Navbar.Collapse
           id="responsive-navbar-nav"

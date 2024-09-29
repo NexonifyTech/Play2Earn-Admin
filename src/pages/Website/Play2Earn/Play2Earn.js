@@ -13,9 +13,9 @@ const Play2Earn = () => {
     <>
       <Header/>
       <Home/>
-      <Choose/>
+      {/* <Choose/>
       <GetStarted/> 
-      <SportsLike/>
+      <SportsLike/> */}
       <DownloadApp/>
       <Footer/>
    

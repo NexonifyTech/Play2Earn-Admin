@@ -14,9 +14,9 @@ const Footer = () => {
               data-wow-delay="0.1s "
             >
                <h5 className="text-white mb-4">Get In Touch</h5>
-    <p><i className="fas fa-map-marker-alt me-3"></i>Tirupathur,Tamil Nadu 635653</p>
-    <p><i className="fa-solid fa-phone me-3"></i>+91 6381475573</p>
-    <i className="fas fa-envelope me-3"></i><a className='text-white' href="mailto:help.meetinground@gmail.com">meetinground@gmail.com</a>
+    <p><i className="fas fa-map-marker-alt me-3"></i>Chennai,Tamil Nadu 600032</p>
+    <p><i className="fa-solid fa-phone me-3"></i>+91 9876543210</p>
+    <i className="fas fa-envelope me-3"></i><a className='text-white' href="mailto:help.meetinground@gmail.com">play2earn@gmail.com</a>
     <div className="d-flex pt-2 mt-3">
         <a className="btn btn-outline-light btn-social m-1" href="#"><i className="fab fa-twitter"></i></a>
         <a className="btn btn-outline-light btn-social m-1" href="#"><i className="fab fa-facebook-f"></i></a>
@@ -34,14 +34,14 @@ const Footer = () => {
             >
               {" "}
               <h5 className="text-white mb-4 mx-2">Useful Link</h5>
-              <a className="btn text-white" href="about-us">
+              {/* <a className="btn text-white" href="about-us">
                 About Us
               </a>
               <br />
               <a className="btn text-white" href="faq">
                 Faq
               </a>
-              <br />
+              <br /> */}
               <a className="btn text-white" href="privacy-policy">
                 Privacy Policy
               </a>
@@ -57,12 +57,9 @@ const Footer = () => {
               className="fade-in-up mt-5"
               data-wow-delay="0.1s "
             >
-              <h5 className="text-white mb-4">For MeetInGround</h5>
+              <h5 className="text-white mb-4">For Play2Earn</h5>
               <p className="text-white">
-                "Gain immediate access to reliable, genuine, and
-                up-to-the-minute details regarding sports events and games.
-                Discover live match updates, schedules, player statistics,
-                betting options, and much more, all at your convenience."
+              "Gain instant access to real-time updates on your favorite games. Play, compete, and earn money easily while staying informed about live events, schedules, and more, all through our app!"
               </p>
             </Col>
           </Row>
@@ -71,7 +68,7 @@ const Footer = () => {
             <div className="copyright">
                 <Row className="">
                 <div className="col-md-12 text-center  mt-5 mb-5">
-                            <p className="text-white" >Copyright © 2024 -MeetInGround<br/> </p>
+                            <p className="text-white" >Copyright © 2024 -Play2Earn<br/> </p>
                             <p className="text-white" >All rights Reserved </p>
                         </div>
                 </Row>
